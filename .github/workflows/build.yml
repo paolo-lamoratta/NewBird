@@ -18,12 +18,12 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        cache: gradle
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew || true
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
+      with:
+        gradle-version: '8.5'
 
-    # Poiché non ho generato il wrapper binario (.jar), usiamo gradle installato nell'ambiente runner
     - name: Build with Gradle
       run: gradle assembleDebug --no-daemon
 
